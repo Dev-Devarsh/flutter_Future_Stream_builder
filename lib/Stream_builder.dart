@@ -39,12 +39,16 @@ class _StreamBuilderExampleState extends State<StreamBuilderExample> {
             // if snapShot has no data & 1st if condition is not in your code then [initialData] will be disaplyed by builder
             //and this condition will only work as 1st if condition (to show CircularProgressIndicator) if [initialData] has nullable value
             return const CircularProgressIndicator();
-            // above two condition will work same and give same input if [initialData] has nullable value
-          } else if (snapshot.connectionState == ConnectionState.done) {
+          }
+          // above two condition will work same and give same outPut if [initialData] has nullable value
+          else if (snapshot.connectionState == ConnectionState.done) {
             return Text(snapshot.data.toString());
           } else if (snapshot.hasData) {
             return Text(snapshot.data.toString());
-            // above two condition will work same and give same input
+          }
+          // above two condition will work same and give same outPut
+          else if (snapshot.hasError) {
+            return const Text('error');
           } else {
             return const Text('error');
           }
